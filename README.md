@@ -1,0 +1,1 @@
+﻿# hartitudeh_QRcodeGenerator
