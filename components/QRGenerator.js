@@ -150,7 +150,7 @@ export default function QRGenerator() {
   const setField = (k, v) => setFields((f) => ({ ...f, [type]: { ...(f[type] || {}), [k]: v } }));
 
   useEffect(() => {
-    try { setHistory(JSON.parse(localStorage.getItem('qrforge-history') || '[]')); } catch {}
+    try { setHistory(JSON.parse(localStorage.getItem('hartitudeh-qr-history') || '[]')); } catch {}
   }, []);
 
   // init + live update (debounced)
@@ -178,7 +178,7 @@ export default function QRGenerator() {
     const entry = { id: Date.now(), type, fields: fields[type], s, data, at: new Date().toISOString() };
     const next = [entry, ...history.filter((h) => h.data !== data)].slice(0, 12);
     setHistory(next);
-    localStorage.setItem('qrforge-history', JSON.stringify(next));
+    localStorage.setItem('hartitudeh-qr-history', JSON.stringify(next));
     setToast({ sev: 'success', msg: `Downloaded ${ext.toUpperCase()} (${dlSize}px)` });
   }, [data, s, dlSize, type, fields, history]);
 
@@ -209,11 +209,11 @@ export default function QRGenerator() {
   };
 
   const saveTemplate = () => {
-    localStorage.setItem('qrforge-custom-style', JSON.stringify(s));
+    localStorage.setItem('hartitudeh-qr-custom-style', JSON.stringify(s));
     setToast({ sev: 'success', msg: 'Design saved as your default template' });
   };
   useEffect(() => {
-    const c = localStorage.getItem('qrforge-custom-style');
+    const c = localStorage.getItem('hartitudeh-qr-custom-style');
     if (c) try { setS({ ...DEFAULT_STYLE, ...JSON.parse(c) }); } catch {}
   }, []);
 
@@ -380,7 +380,7 @@ export default function QRGenerator() {
                 <Tooltip title="Copy image"><IconButton onClick={copy}><MdContentCopy /></IconButton></Tooltip>
                 <Tooltip title="Share"><IconButton onClick={share}><MdShare /></IconButton></Tooltip>
                 <Tooltip title="Save design as default"><IconButton onClick={saveTemplate}><MdSave /></IconButton></Tooltip>
-                <Tooltip title="Reset design"><IconButton onClick={() => { localStorage.removeItem('qrforge-custom-style'); setS(DEFAULT_STYLE); }}><MdRestartAlt /></IconButton></Tooltip>
+                <Tooltip title="Reset design"><IconButton onClick={() => { localStorage.removeItem('hartitudeh-qr-custom-style'); setS(DEFAULT_STYLE); }}><MdRestartAlt /></IconButton></Tooltip>
               </Stack>
             </Paper>
           </Sticky>
@@ -410,7 +410,7 @@ export default function QRGenerator() {
                 <Chip label={h.type} size="small" color="primary" />
                 <Typography noWrap sx={{ flex: 1, minWidth: 0 }}>{h.data}</Typography>
                 <Button size="small" onClick={() => { setType(h.type); setFields((f) => ({ ...f, [h.type]: h.fields })); setS(h.s); document.getElementById('generator').scrollIntoView({ behavior: 'smooth' }); }}>Load</Button>
-                <IconButton size="small" onClick={() => { const n = history.filter((x) => x.id !== h.id); setHistory(n); localStorage.setItem('qrforge-history', JSON.stringify(n)); }}><MdDelete /></IconButton>
+                <IconButton size="small" onClick={() => { const n = history.filter((x) => x.id !== h.id); setHistory(n); localStorage.setItem('hartitudeh-qr-history', JSON.stringify(n)); }}><MdDelete /></IconButton>
               </Paper>
             ))}
           </Stack>

@@ -55,7 +55,7 @@ export default function Home() {
             </Accordion>
           ))}
         </Box>
-        <Stack alignItems="center" mt={6}><Typography variant="caption" color="text.secondary">© {new Date().getFullYear()} QRForge</Typography></Stack>
+        <Stack alignItems="center" mt={6}><Typography variant="caption" color="text.secondary">© {new Date().getFullYear()} Hartitudeh QRcodeGenerator</Typography></Stack>
       </Container>
     </>
   );

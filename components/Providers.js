@@ -16,7 +16,7 @@ export default function Providers({ children }) {
   const [mode, setMode] = useState('light');
 
   useEffect(() => {
-    const saved = localStorage.getItem('qrforge-mode');
+    const saved = localStorage.getItem('hartitudeh-qr-mode');
     if (saved) setMode(saved);
     else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setMode('dark');
   }, []);
@@ -27,7 +27,7 @@ export default function Providers({ children }) {
       toggle: () =>
         setMode((m) => {
           const n = m === 'light' ? 'dark' : 'light';
-          localStorage.setItem('qrforge-mode', n);
+          localStorage.setItem('hartitudeh-qr-mode', n);
           return n;
         }),
     }),

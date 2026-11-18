@@ -49,7 +49,7 @@ export default function Navbar({ mode, onToggleMode }) {
       <AppBar position="sticky" color="inherit" elevation={0}
         sx={{ borderBottom: 1, borderColor: 'divider', backdropFilter: 'blur(10px)', bgcolor: (t) => t.palette.background.paper + 'cc' }}>
         <Toolbar sx={{ maxWidth: 1280, width: '100%', mx: 'auto' }}>
-          <Logo href="#generator"><MdQrCode2 size={30} color="#6C4CF1" /><span>QRForge</span></Logo>
+          <Logo href="#generator"><MdQrCode2 size={30} color="#6C4CF1" /><span>Hartitudeh QRcodeGenerator</span></Logo>
           <Box sx={{ flexGrow: 1 }} />
           {!mobile && NAV.map((n) => (
             <Button key={n.id} startIcon={n.icon} onClick={() => go(n.id)}
